@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button.jsx'
+import ThemeToggle from '@/components/ThemeToggle.jsx'
 import { 
   Home, 
   Key, 
@@ -45,20 +46,23 @@ const ToolPage = ({ children, title, description, fullWidth = false }) => {
               </Link>
             </div>
             
-            {/* 工具快速导航 */}
-            <div className="hidden md:flex items-center space-x-1">
-              {tools.filter(t => !t.disabled).map((tool) => (
-                <Link key={tool.id} to={tool.href}>
-                  <Button 
-                    variant={location.pathname === tool.href ? 'default' : 'ghost'} 
-                    size="sm"
-                    className="h-8"
-                  >
-                    <tool.icon className="h-3.5 w-3.5 mr-1.5" />
-                    {tool.title}
-                  </Button>
-                </Link>
-              ))}
+            <div className="flex items-center gap-2">
+              {/* 工具快速导航 */}
+              <div className="hidden md:flex items-center space-x-1">
+                {tools.filter(t => !t.disabled).map((tool) => (
+                  <Link key={tool.id} to={tool.href}>
+                    <Button 
+                      variant={location.pathname === tool.href ? 'default' : 'ghost'} 
+                      size="sm"
+                      className="h-8"
+                    >
+                      <tool.icon className="h-3.5 w-3.5 mr-1.5" />
+                      {tool.title}
+                    </Button>
+                  </Link>
+                ))}
+              </div>
+              <ThemeToggle />
             </div>
           </div>
         </div>

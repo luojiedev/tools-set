@@ -10,6 +10,7 @@ import {
   ArrowRight
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
+import ThemeToggle from '@/components/ThemeToggle.jsx'
 
 const tools = [
   {
@@ -80,6 +81,7 @@ const Home = () => {
                 <p className="text-sm text-muted-foreground">实用在线工具集合</p>
               </div>
             </div>
+            <ThemeToggle />
           </div>
         </div>
       </header>

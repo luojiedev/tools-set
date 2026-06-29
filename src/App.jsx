@@ -7,6 +7,7 @@ import IdPage from './pages/IdPage'
 import JsonPage from './pages/JsonPage'
 import TimePage from './pages/TimePage'
 import IpPage from './pages/IpPage'
+import ThemeProvider from './components/theme-provider'
 
 function AppContent() {
   const navigate = useNavigate()
@@ -34,9 +35,11 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
