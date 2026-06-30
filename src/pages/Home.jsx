@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import ThemeToggle from '@/components/ThemeToggle.jsx'
+import { useIsMobile } from '@/hooks/use-mobile.js'
 
 const tools = [
   {
@@ -64,6 +65,9 @@ const tools = [
 ]
 
 const Home = () => {
+  const isMobile = useIsMobile()
+  const visibleTools = isMobile ? tools.filter((tool) => tool.id !== 'json') : tools
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-black dark:via-zinc-950 dark:to-black">
       {/* Header */}
@@ -101,7 +105,7 @@ const Home = () => {
 
           {/* Tools Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tools.map((tool) => (
+            {visibleTools.map((tool) => (
               <Link 
                 key={tool.id} 
                 to={tool.disabled ? '#' : tool.href}

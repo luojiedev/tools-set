@@ -370,7 +370,7 @@ const HelpContent = () => {
 const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast, prevValue }) => {
   return (
     <div className="space-y-2">
-      <div className="flex items-end gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4">
         <div className="flex-1">
           <Label className="text-xs text-muted-foreground mb-1 block">
             时间戳 (秒)
@@ -382,7 +382,7 @@ const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast
             className="font-mono"
           />
         </div>
-        <div className="w-[200px]">
+        <div className="w-full sm:w-[200px]">
           <Label className="text-xs text-muted-foreground mb-1 block">
             时区
           </Label>
@@ -434,7 +434,7 @@ const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast
 const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, prevValue }) => {
   return (
     <div className="space-y-2">
-      <div className="flex items-end gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4">
         <div className="flex-1">
           <Label className="text-xs text-muted-foreground mb-1 block">
             日期时间
@@ -446,7 +446,7 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
             className="font-mono"
           />
         </div>
-        <div className="w-[200px]">
+        <div className="w-full sm:w-[200px]">
           <Label className="text-xs text-muted-foreground mb-1 block">
             时区
           </Label>
@@ -485,10 +485,10 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
               }
             })()}
           </span>
-          <Badge variant="outline" className="ml-2">
+          <Badge variant="outline" className="ml-0 sm:ml-2 mt-2 sm:mt-0">
             秒级
           </Badge>
-          <Badge variant="secondary" className="ml-2">
+          <Badge variant="secondary" className="ml-0 sm:ml-2 mt-2 sm:mt-0 break-all">
             毫秒级: {(() => {
               try {
                 const date = new Date(item.value)
@@ -593,13 +593,13 @@ const TimePage = () => {
         {/* 当前时间 */}
         <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-950 dark:text-foreground dark:border-border">
           <CardContent className="py-6">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
                 <div className="p-3 bg-white/20 dark:bg-white/5 rounded-xl backdrop-blur-sm">
-                  <Clock className="h-10 w-10" />
+                  <Clock className="h-8 w-8 sm:h-10 sm:w-10" />
                 </div>
-                <div>
-                  <div className="text-3xl font-mono font-bold tracking-wide">
+                <div className="min-w-0">
+                  <div className="text-xl sm:text-3xl font-mono font-bold break-all">
                     {format(currentTime, 'yyyy-MM-dd HH:mm:ss')}
                   </div>
                   <div className="text-sm opacity-90 flex items-center gap-2">
@@ -609,14 +609,14 @@ const TimePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-mono font-bold bg-white/20 dark:bg-white/5 px-4 py-2 rounded-lg backdrop-blur-sm">
+              <div className="text-left sm:text-right">
+                <div className="text-xl sm:text-2xl font-mono font-bold bg-white/20 dark:bg-white/5 px-4 py-2 rounded-lg backdrop-blur-sm break-all">
                   {currentTimestamp}
                 </div>
                 <div className="text-sm opacity-90 mt-1">
                   秒级时间戳
                 </div>
-                <div className="text-lg font-mono opacity-75">
+                <div className="text-base sm:text-lg font-mono opacity-75 break-all">
                   {currentTime.getTime()}
                 </div>
                 <div className="text-xs opacity-75">
@@ -643,12 +643,12 @@ const TimePage = () => {
           <TabsContent value="ts-to-date" className="mt-6">
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center justify-between">
+                <CardTitle className="text-base flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <span className="flex items-center">
                     <ArrowUp className="h-4 w-4 mr-2 text-blue-500 dark:text-muted-foreground" />
                     时间戳转换为日期时间
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex w-full sm:w-auto items-center gap-2">
                     <Button variant="outline" size="sm" onClick={() => setHelpOpen(true)}>
                       <HelpCircle className="h-4 w-4 mr-2" />
                       帮助
@@ -680,12 +680,12 @@ const TimePage = () => {
           <TabsContent value="date-to-ts" className="mt-6">
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center justify-between">
+                <CardTitle className="text-base flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <span className="flex items-center">
                     <ArrowDown className="h-4 w-4 mr-2 text-green-500 dark:text-muted-foreground" />
                     日期时间转换为时间戳
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex w-full sm:w-auto items-center gap-2">
                     <Button variant="outline" size="sm" onClick={() => setHelpOpen(true)}>
                       <HelpCircle className="h-4 w-4 mr-2" />
                       帮助

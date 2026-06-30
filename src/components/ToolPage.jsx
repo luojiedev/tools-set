@@ -12,6 +12,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from 'lucide-react'
+import { useIsMobile } from '@/hooks/use-mobile.js'
 
 const tools = [
   { id: 'password', title: '密码生成', icon: Key, href: '/tools/password' },
@@ -24,10 +25,12 @@ const tools = [
 
 const ToolPage = ({ children, title, description, fullWidth = false }) => {
   const location = useLocation()
-  const currentIndex = tools.findIndex(t => t.href === location.pathname)
+  const isMobile = useIsMobile()
+  const visibleTools = isMobile ? tools.filter((tool) => tool.id !== 'json') : tools
+  const currentIndex = visibleTools.findIndex(t => t.href === location.pathname)
   
-  const prevTool = currentIndex > 0 ? tools[currentIndex - 1] : null
-  const nextTool = currentIndex < tools.length - 1 ? tools[currentIndex + 1] : null
+  const prevTool = currentIndex > 0 ? visibleTools[currentIndex - 1] : null
+  const nextTool = currentIndex >= 0 && currentIndex < visibleTools.length - 1 ? visibleTools[currentIndex + 1] : null
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-black dark:via-zinc-950 dark:to-black">
@@ -49,7 +52,7 @@ const ToolPage = ({ children, title, description, fullWidth = false }) => {
             <div className="flex items-center gap-2">
               {/* 工具快速导航 */}
               <div className="hidden md:flex items-center space-x-1">
-                {tools.filter(t => !t.disabled).map((tool) => (
+                {visibleTools.filter(t => !t.disabled).map((tool) => (
                   <Link key={tool.id} to={tool.href}>
                     <Button 
                       variant={location.pathname === tool.href ? 'default' : 'ghost'} 
