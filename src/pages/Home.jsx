@@ -65,9 +65,9 @@ const tools = [
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-black dark:via-zinc-950 dark:to-black">
       {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 sticky top-0 z-50">
+      <header className="border-b bg-white/80 backdrop-blur-sm dark:bg-black/80 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -107,7 +107,7 @@ const Home = () => {
                 to={tool.disabled ? '#' : tool.href}
                 className={`block transition-transform hover:scale-[1.02] ${tool.disabled ? 'pointer-events-none opacity-60' : ''}`}
               >
-                <Card className="h-full bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-shadow">
+                <Card className="h-full bg-white/70 dark:bg-card/90 backdrop-blur-sm border-0 dark:border dark:border-border shadow-lg hover:shadow-xl transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
                       <div className={`p-2 rounded-lg bg-gradient-to-r ${tool.color}`}>
@@ -121,7 +121,7 @@ const Home = () => {
                     <CardDescription>{tool.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center text-sm text-blue-500">
+                    <div className="flex items-center text-sm text-blue-500 dark:text-muted-foreground">
                       <span>立即使用</span>
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </div>
@@ -134,7 +134,7 @@ const Home = () => {
       </main>
 
       {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 border-t bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <footer className="fixed bottom-0 left-0 right-0 border-t bg-white/80 dark:bg-black/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="text-center text-sm text-muted-foreground">
             <p>© 2026 工具站. 所有工具均在本地运行，保护您的隐私安全.</p>

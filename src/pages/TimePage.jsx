@@ -22,8 +22,7 @@ import {
   ArrowDown,
   ArrowUp
 } from 'lucide-react'
-import { format, parse } from 'date-fns'
-import { zhCN } from 'date-fns/locale'
+import { format } from 'date-fns'
 
 const TIMEZONES = [
   { value: 'Asia/Shanghai', label: '中国 (Asia/Shanghai)', offset: 8 },
@@ -59,7 +58,7 @@ const formatTimestamp = (ts, timezone) => {
       hour12: false
     })
     return formatter.format(date).replace(/\//g, '-')
-  } catch (e) {
+  } catch {
     return '无效时间戳'
   }
 }
@@ -255,7 +254,7 @@ const HelpContent = () => {
             {basicsContent.map((item, i) => (
               <div key={i} className="p-4 rounded-lg border bg-card">
                 <h4 className="font-semibold text-base mb-2 flex items-center">
-                  <span className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center text-sm mr-2">
+                  <span className="w-6 h-6 rounded-full bg-blue-100 dark:bg-muted text-blue-600 dark:text-muted-foreground flex items-center justify-center text-sm mr-2">
                     {i + 1}
                   </span>
                   {item.title}
@@ -277,7 +276,7 @@ const HelpContent = () => {
                 {cliCommands.map((item, i) => (
                   <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-muted/50 border">
                     <div>
-                      <span className="text-xs font-medium text-blue-600 dark:text-blue-400">{item.os}</span>
+                      <span className="text-xs font-medium text-blue-600 dark:text-muted-foreground">{item.os}</span>
                       <code className="block text-sm mt-1">{item.tsToDate}</code>
                     </div>
                     <Button 
@@ -300,7 +299,7 @@ const HelpContent = () => {
                 {cliCommands.map((item, i) => (
                   <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-muted/50 border">
                     <div>
-                      <span className="text-xs font-medium text-green-600 dark:text-green-400">{item.os}</span>
+                      <span className="text-xs font-medium text-green-600 dark:text-muted-foreground">{item.os}</span>
                       <code className="block text-sm mt-1">{item.dateToTs}</code>
                     </div>
                     <Button 
@@ -410,7 +409,7 @@ const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast
         </Button>
       </div>
       {ts.value && (
-        <div className="mt-2 p-3 rounded-lg bg-muted/50 border-l-4 border-blue-500">
+        <div className="mt-2 p-3 rounded-lg bg-muted/50 border-l-4 border-blue-500 dark:border-border">
           <span className="text-sm text-muted-foreground">转换结果: </span>
           <span className="font-mono font-medium">
             {formatTimestamp(parseInt(ts.value) || 0, ts.timezone)}
@@ -421,9 +420,9 @@ const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast
         </div>
       )}
       {index > 0 && ts.value && prevValue && (
-        <div className="mt-2 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-400">
+        <div className="mt-2 p-3 rounded-lg bg-blue-50 dark:bg-muted/50 border-l-4 border-blue-400 dark:border-border">
           <span className="text-sm text-muted-foreground">与上一个时间差: </span>
-          <span className="font-mono font-medium text-blue-600 dark:text-blue-400">
+          <span className="font-mono font-medium text-blue-600 dark:text-foreground">
             {formatTimeDiff(parseInt(ts.value) || 0, parseInt(prevValue) || 0)}
           </span>
         </div>
@@ -474,14 +473,14 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
         </Button>
       </div>
       {item.value && (
-        <div className="mt-2 p-3 rounded-lg bg-muted/50 border-l-4 border-green-500">
+        <div className="mt-2 p-3 rounded-lg bg-muted/50 border-l-4 border-green-500 dark:border-border">
           <span className="text-sm text-muted-foreground">时间戳: </span>
           <span className="font-mono font-medium">
             {(() => {
               try {
                 const date = new Date(item.value)
                 return Math.floor(date.getTime() / 1000)
-              } catch (e) {
+              } catch {
                 return '无效日期'
               }
             })()}
@@ -494,7 +493,7 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
               try {
                 const date = new Date(item.value)
                 return date.getTime()
-              } catch (e) {
+              } catch {
                 return '无效日期'
               }
             })()}
@@ -502,15 +501,15 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
         </div>
       )}
       {index > 0 && item.value && prevValue && (
-        <div className="mt-2 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border-l-4 border-green-400">
+        <div className="mt-2 p-3 rounded-lg bg-green-50 dark:bg-muted/50 border-l-4 border-green-400 dark:border-border">
           <span className="text-sm text-muted-foreground">与上一个时间差: </span>
-          <span className="font-mono font-medium text-green-600 dark:text-green-400">
+          <span className="font-mono font-medium text-green-600 dark:text-foreground">
             {(() => {
               try {
                 const d1 = new Date(item.value).getTime() / 1000
                 const d2 = new Date(prevValue).getTime() / 1000
                 return formatTimeDiff(d1, d2)
-              } catch (e) {
+              } catch {
                 return '-'
               }
             })()}
@@ -520,9 +519,6 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
     </div>
   )
 }
-
-let timestamps = []
-let items = []
 
 const TimePage = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
@@ -595,11 +591,11 @@ const TimePage = () => {
     <ToolPage title="时间转换" description="时间戳与时间格式互转，支持多时区">
       <div className="space-y-6">
         {/* 当前时间 */}
-        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg">
+        <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-950 dark:text-foreground dark:border-border">
           <CardContent className="py-6">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+                <div className="p-3 bg-white/20 dark:bg-white/5 rounded-xl backdrop-blur-sm">
                   <Clock className="h-10 w-10" />
                 </div>
                 <div>
@@ -607,14 +603,14 @@ const TimePage = () => {
                     {format(currentTime, 'yyyy-MM-dd HH:mm:ss')}
                   </div>
                   <div className="text-sm opacity-90 flex items-center gap-2">
-                    <Badge variant="secondary" className="text-white bg-white/20">
+                    <Badge variant="secondary" className="text-white bg-white/20 dark:text-foreground dark:bg-white/10">
                       {localTz}
                     </Badge>
                   </div>
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-2xl font-mono font-bold bg-white/20 px-4 py-2 rounded-lg backdrop-blur-sm">
+                <div className="text-2xl font-mono font-bold bg-white/20 dark:bg-white/5 px-4 py-2 rounded-lg backdrop-blur-sm">
                   {currentTimestamp}
                 </div>
                 <div className="text-sm opacity-90 mt-1">
@@ -649,7 +645,7 @@ const TimePage = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center justify-between">
                   <span className="flex items-center">
-                    <ArrowUp className="h-4 w-4 mr-2 text-blue-500" />
+                    <ArrowUp className="h-4 w-4 mr-2 text-blue-500 dark:text-muted-foreground" />
                     时间戳转换为日期时间
                   </span>
                   <div className="flex items-center gap-2">
@@ -686,7 +682,7 @@ const TimePage = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center justify-between">
                   <span className="flex items-center">
-                    <ArrowDown className="h-4 w-4 mr-2 text-green-500" />
+                    <ArrowDown className="h-4 w-4 mr-2 text-green-500 dark:text-muted-foreground" />
                     日期时间转换为时间戳
                   </span>
                   <div className="flex items-center gap-2">
