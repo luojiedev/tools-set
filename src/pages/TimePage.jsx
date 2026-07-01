@@ -402,6 +402,7 @@ const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast
         <Button 
           variant="ghost" 
           size="icon"
+          className="self-end sm:self-auto h-9 w-9"
           onClick={() => onRemove(ts.id)}
           disabled={isLast && index === 0}
         >
@@ -409,12 +410,12 @@ const TimestampItem = ({ ts, index, onRemove, onChange, onTimezoneChange, isLast
         </Button>
       </div>
       {ts.value && (
-        <div className="mt-2 p-3 rounded-lg bg-muted/50 border-l-4 border-blue-500 dark:border-border">
+        <div className="mt-2 space-y-2 p-3 rounded-lg bg-muted/50 border-l-4 border-blue-500 dark:border-border">
           <span className="text-sm text-muted-foreground">转换结果: </span>
-          <span className="font-mono font-medium">
+          <span className="font-mono font-medium break-all">
             {formatTimestamp(parseInt(ts.value) || 0, ts.timezone)}
           </span>
-          <Badge variant="outline" className="ml-2">
+          <Badge variant="outline" className="ml-0 sm:ml-2">
             {ts.timezone}
           </Badge>
         </div>
@@ -466,6 +467,7 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
         <Button 
           variant="ghost" 
           size="icon"
+          className="self-end sm:self-auto h-9 w-9"
           onClick={() => onRemove(item.id)}
           disabled={isLast && index === 0}
         >
@@ -473,9 +475,9 @@ const DateItem = ({ item, index, onRemove, onChange, onTimezoneChange, isLast, p
         </Button>
       </div>
       {item.value && (
-        <div className="mt-2 p-3 rounded-lg bg-muted/50 border-l-4 border-green-500 dark:border-border">
+        <div className="mt-2 space-y-2 p-3 rounded-lg bg-muted/50 border-l-4 border-green-500 dark:border-border">
           <span className="text-sm text-muted-foreground">时间戳: </span>
-          <span className="font-mono font-medium">
+          <span className="font-mono font-medium break-all">
             {(() => {
               try {
                 const date = new Date(item.value)
@@ -589,20 +591,20 @@ const TimePage = () => {
 
   return (
     <ToolPage title="时间转换" description="时间戳与时间格式互转，支持多时区">
-      <div className="space-y-6">
+      <div className="space-y-5 sm:space-y-6">
         {/* 当前时间 */}
         <Card className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-950 dark:text-foreground dark:border-border">
-          <CardContent className="py-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
-                <div className="p-3 bg-white/20 dark:bg-white/5 rounded-xl backdrop-blur-sm">
-                  <Clock className="h-8 w-8 sm:h-10 sm:w-10" />
+          <CardContent className="p-4 sm:py-6 sm:px-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+              <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                <div className="p-2.5 sm:p-3 bg-white/20 dark:bg-white/5 rounded-lg sm:rounded-xl backdrop-blur-sm">
+                  <Clock className="h-7 w-7 sm:h-10 sm:w-10" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xl sm:text-3xl font-mono font-bold break-all">
+                  <div className="text-lg sm:text-3xl font-mono font-bold break-all leading-tight">
                     {format(currentTime, 'yyyy-MM-dd HH:mm:ss')}
                   </div>
-                  <div className="text-sm opacity-90 flex items-center gap-2">
+                  <div className="mt-1 text-xs sm:text-sm opacity-90 flex items-center gap-2">
                     <Badge variant="secondary" className="text-white bg-white/20 dark:text-foreground dark:bg-white/10">
                       {localTz}
                     </Badge>
@@ -610,13 +612,13 @@ const TimePage = () => {
                 </div>
               </div>
               <div className="text-left sm:text-right">
-                <div className="text-xl sm:text-2xl font-mono font-bold bg-white/20 dark:bg-white/5 px-4 py-2 rounded-lg backdrop-blur-sm break-all">
+                <div className="text-lg sm:text-2xl font-mono font-bold bg-white/20 dark:bg-white/5 px-3 py-2 sm:px-4 rounded-lg backdrop-blur-sm break-all">
                   {currentTimestamp}
                 </div>
-                <div className="text-sm opacity-90 mt-1">
+                <div className="text-xs sm:text-sm opacity-90 mt-1">
                   秒级时间戳
                 </div>
-                <div className="text-base sm:text-lg font-mono opacity-75 break-all">
+                <div className="text-sm sm:text-lg font-mono opacity-75 break-all">
                   {currentTime.getTime()}
                 </div>
                 <div className="text-xs opacity-75">
@@ -629,38 +631,38 @@ const TimePage = () => {
 
         {/* 转换类型选择 */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full max-w-md grid-cols-2">
-            <TabsTrigger value="ts-to-date" className="flex items-center gap-2">
-              <ArrowUp className="h-4 w-4" />
+          <TabsList className="grid h-11 w-full max-w-md grid-cols-2">
+            <TabsTrigger value="ts-to-date" className="h-9 min-w-0 gap-1.5 text-sm">
+              <ArrowUp className="h-4 w-4 shrink-0" />
               时间戳 → 日期
             </TabsTrigger>
-            <TabsTrigger value="date-to-ts" className="flex items-center gap-2">
-              <ArrowDown className="h-4 w-4" />
+            <TabsTrigger value="date-to-ts" className="h-9 min-w-0 gap-1.5 text-sm">
+              <ArrowDown className="h-4 w-4 shrink-0" />
               日期 → 时间戳
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="ts-to-date" className="mt-6">
+          <TabsContent value="ts-to-date" className="mt-5 sm:mt-6">
             <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                  <span className="flex items-center">
+              <CardHeader className="p-4 pb-2 sm:p-6 sm:pb-2">
+                <CardTitle className="text-sm sm:text-base flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <span className="flex items-center leading-none">
                     <ArrowUp className="h-4 w-4 mr-2 text-blue-500 dark:text-muted-foreground" />
                     时间戳转换为日期时间
                   </span>
                   <div className="flex w-full sm:w-auto items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setHelpOpen(true)}>
+                    <Button variant="outline" size="sm" className="flex-1 sm:flex-none" onClick={() => setHelpOpen(true)}>
                       <HelpCircle className="h-4 w-4 mr-2" />
                       帮助
                     </Button>
-                    <Button variant="default" size="sm" onClick={handleAddTimestamp}>
+                    <Button variant="default" size="sm" className="flex-1 sm:flex-none" onClick={handleAddTimestamp}>
                       <Plus className="h-4 w-4 mr-2" />
                       添加
                     </Button>
                   </div>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 p-4 pt-3 sm:p-6 sm:pt-4">
                 {timestamps.map((ts, index) => (
                   <TimestampItem
                     key={ts.id}
@@ -677,27 +679,27 @@ const TimePage = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="date-to-ts" className="mt-6">
+          <TabsContent value="date-to-ts" className="mt-5 sm:mt-6">
             <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                  <span className="flex items-center">
+              <CardHeader className="p-4 pb-2 sm:p-6 sm:pb-2">
+                <CardTitle className="text-sm sm:text-base flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <span className="flex items-center leading-none">
                     <ArrowDown className="h-4 w-4 mr-2 text-green-500 dark:text-muted-foreground" />
                     日期时间转换为时间戳
                   </span>
                   <div className="flex w-full sm:w-auto items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setHelpOpen(true)}>
+                    <Button variant="outline" size="sm" className="flex-1 sm:flex-none" onClick={() => setHelpOpen(true)}>
                       <HelpCircle className="h-4 w-4 mr-2" />
                       帮助
                     </Button>
-                    <Button variant="default" size="sm" onClick={handleAddDate}>
+                    <Button variant="default" size="sm" className="flex-1 sm:flex-none" onClick={handleAddDate}>
                       <Plus className="h-4 w-4 mr-2" />
                       添加
                     </Button>
                   </div>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 p-4 pt-3 sm:p-6 sm:pt-4">
                 {dateItems.map((item, index) => (
                   <DateItem
                     key={item.id}
