@@ -9,6 +9,11 @@ import {
   Globe, 
   Clock, 
   FileJson,
+  QrCode,
+  Link2,
+  Regex,
+  KeyRound,
+  Fingerprint,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react'
@@ -20,7 +25,12 @@ const tools = [
   { id: 'id', title: '身份证校验', icon: CreditCard, href: '/tools/id' },
   { id: 'ip', title: 'IP查询', icon: Globe, href: '/tools/ip' },
   { id: 'time', title: '时间转换', icon: Clock, href: '/tools/time' },
-  { id: 'json', title: 'JSON工具', icon: FileJson, href: '/tools/json' }
+  { id: 'json', title: 'JSON工具', icon: FileJson, href: '/tools/json' },
+  { id: 'qr', title: '二维码', icon: QrCode, href: '/tools/qr' },
+  { id: 'url', title: 'URL工具', icon: Link2, href: '/tools/url' },
+  { id: 'regex', title: '正则测试', icon: Regex, href: '/tools/regex' },
+  { id: 'jwt', title: 'JWT解析', icon: KeyRound, href: '/tools/jwt' },
+  { id: 'uuid', title: '随机ID', icon: Fingerprint, href: '/tools/uuid' }
 ]
 
 const ToolPage = ({ children, title, description, fullWidth = false }) => {
@@ -51,7 +61,7 @@ const ToolPage = ({ children, title, description, fullWidth = false }) => {
             
             <div className="flex items-center gap-2">
               {/* 工具快速导航 */}
-              <div className="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex max-w-[calc(100vw-220px)] items-center space-x-1 overflow-x-auto py-1">
                 {visibleTools.filter(t => !t.disabled).map((tool) => (
                   <Link key={tool.id} to={tool.href}>
                     <Button 

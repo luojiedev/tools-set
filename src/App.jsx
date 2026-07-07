@@ -7,6 +7,11 @@ import IdPage from './pages/IdPage'
 import JsonPage from './pages/JsonPage'
 import TimePage from './pages/TimePage'
 import IpPage from './pages/IpPage'
+import QrPage from './pages/QrPage'
+import UrlPage from './pages/UrlPage'
+import RegexPage from './pages/RegexPage'
+import JwtPage from './pages/JwtPage'
+import UuidPage from './pages/UuidPage'
 import ThemeProvider from './components/theme-provider'
 
 function AppContent() {
@@ -29,6 +34,11 @@ function AppContent() {
       <Route path="/tools/ip" element={<IpPage />} />
       <Route path="/tools/time" element={<TimePage />} />
       <Route path="/tools/json" element={<JsonPage />} />
+      <Route path="/tools/qr" element={<QrPage />} />
+      <Route path="/tools/url" element={<UrlPage />} />
+      <Route path="/tools/regex" element={<RegexPage />} />
+      <Route path="/tools/jwt" element={<JwtPage />} />
+      <Route path="/tools/uuid" element={<UuidPage />} />
     </Routes>
   )
 }

@@ -7,7 +7,12 @@ import {
   Clock, 
   FileJson, 
   Wrench,
-  ArrowRight
+  ArrowRight,
+  QrCode,
+  Link2,
+  Regex,
+  KeyRound,
+  Fingerprint
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import ThemeToggle from '@/components/ThemeToggle.jsx'
@@ -61,6 +66,46 @@ const tools = [
     icon: FileJson,
     href: '/tools/json',
     color: 'from-yellow-500 to-amber-500'
+  },
+  {
+    id: 'qr',
+    title: '二维码工具',
+    description: '生成文本、链接二维码并下载 PNG',
+    icon: QrCode,
+    href: '/tools/qr',
+    color: 'from-slate-500 to-zinc-700'
+  },
+  {
+    id: 'url',
+    title: 'URL 工具',
+    description: '解析 URL、查看参数并处理编码解码',
+    icon: Link2,
+    href: '/tools/url',
+    color: 'from-teal-500 to-cyan-600'
+  },
+  {
+    id: 'regex',
+    title: '正则测试',
+    description: '实时测试正则表达式和捕获组',
+    icon: Regex,
+    href: '/tools/regex',
+    color: 'from-rose-500 to-fuchsia-600'
+  },
+  {
+    id: 'jwt',
+    title: 'JWT 解析',
+    description: '本地解码 Header、Payload 和常用声明',
+    icon: KeyRound,
+    href: '/tools/jwt',
+    color: 'from-violet-500 to-indigo-600'
+  },
+  {
+    id: 'uuid',
+    title: 'UUID / 随机 ID',
+    description: '批量生成 UUID 和随机字符串',
+    icon: Fingerprint,
+    href: '/tools/uuid',
+    color: 'from-lime-500 to-green-600'
   }
 ]
 
