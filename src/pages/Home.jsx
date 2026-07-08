@@ -12,7 +12,9 @@ import {
   Link2,
   Regex,
   KeyRound,
-  Fingerprint
+  Fingerprint,
+  CalendarClock,
+  Image
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import ThemeToggle from '@/components/ThemeToggle.jsx'
@@ -106,6 +108,22 @@ const tools = [
     icon: Fingerprint,
     href: '/tools/uuid',
     color: 'from-lime-500 to-green-600'
+  },
+  {
+    id: 'cron',
+    title: 'Cron 表达式',
+    description: '解析定时规则并显示后续执行时间',
+    icon: CalendarClock,
+    href: '/tools/cron',
+    color: 'from-sky-500 to-blue-700'
+  },
+  {
+    id: 'base64-image',
+    title: 'Base64 图片',
+    description: '图片转 Base64、预览并压缩输出',
+    icon: Image,
+    href: '/tools/base64-image',
+    color: 'from-pink-500 to-orange-500'
   }
 ]
 

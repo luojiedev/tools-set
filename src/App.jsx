@@ -12,6 +12,8 @@ import UrlPage from './pages/UrlPage'
 import RegexPage from './pages/RegexPage'
 import JwtPage from './pages/JwtPage'
 import UuidPage from './pages/UuidPage'
+import CronPage from './pages/CronPage'
+import Base64ImagePage from './pages/Base64ImagePage'
 import ThemeProvider from './components/theme-provider'
 
 function AppContent() {
@@ -39,6 +41,8 @@ function AppContent() {
       <Route path="/tools/regex" element={<RegexPage />} />
       <Route path="/tools/jwt" element={<JwtPage />} />
       <Route path="/tools/uuid" element={<UuidPage />} />
+      <Route path="/tools/cron" element={<CronPage />} />
+      <Route path="/tools/base64-image" element={<Base64ImagePage />} />
     </Routes>
   )
 }

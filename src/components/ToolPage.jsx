@@ -14,6 +14,8 @@ import {
   Regex,
   KeyRound,
   Fingerprint,
+  CalendarClock,
+  Image,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react'
@@ -30,7 +32,9 @@ const tools = [
   { id: 'url', title: 'URL工具', icon: Link2, href: '/tools/url' },
   { id: 'regex', title: '正则测试', icon: Regex, href: '/tools/regex' },
   { id: 'jwt', title: 'JWT解析', icon: KeyRound, href: '/tools/jwt' },
-  { id: 'uuid', title: '随机ID', icon: Fingerprint, href: '/tools/uuid' }
+  { id: 'uuid', title: '随机ID', icon: Fingerprint, href: '/tools/uuid' },
+  { id: 'cron', title: 'Cron', icon: CalendarClock, href: '/tools/cron' },
+  { id: 'base64-image', title: '图片Base64', icon: Image, href: '/tools/base64-image' }
 ]
 
 const ToolPage = ({ children, title, description, fullWidth = false }) => {
